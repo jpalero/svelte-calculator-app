@@ -1,4 +1,5 @@
-# create-svelte
+# Calculator app using svelte, sveltekit, JSON, Typescript, SSR and API.
+## create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
@@ -36,3 +37,18 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+# Here is the overview of the project
+
+This simple calculator app built with Svelte. This perform the simple mathematical operations. Also using a SSR to compute all the computation by a HTTP POST request then return a response using json format.
+
+## This is the layout of this project.
+<img width="373" alt="image" src="https://github.com/jpalero/svelte-calculator-app/assets/131837340/f788d924-027e-4d68-9ab4-45085d0462f4">
+
+## Console log all the unseen opration
+<img width="305" alt="image" src="https://github.com/jpalero/svelte-calculator-app/assets/131837340/c8a2d6fe-a494-4f5a-bf99-b5ac6af65606">
+
+## The actual result. You can also continue to add/sub/mul/div more.
+<img width="370" alt="image" src="https://github.com/jpalero/svelte-calculator-app/assets/131837340/2e22470a-ba0c-4fc1-a87c-24e1d11e413b">
+
+
