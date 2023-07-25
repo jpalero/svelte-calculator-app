@@ -45,7 +45,9 @@ This simple calculator app built with Svelte. This perform the simple mathematic
 ## This is the layout of this project.
 <img width="373" alt="image" src="https://github.com/jpalero/svelte-calculator-app/assets/131837340/f788d924-027e-4d68-9ab4-45085d0462f4">
 
-## Console log all the unseen opration
+## Console log all the unseen operation
+This will console log all the math operation we use. It will show continuously as long you are using the calculator then show the result. 
+
 <img width="305" alt="image" src="https://github.com/jpalero/svelte-calculator-app/assets/131837340/c8a2d6fe-a494-4f5a-bf99-b5ac6af65606">
 
 ## The actual result. You can also continue to add/sub/mul/div more.
