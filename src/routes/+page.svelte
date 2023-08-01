@@ -142,7 +142,7 @@
                 firstOperand += showInput;
                 operand = operand + "-";
                 showInput = "";
-                isAdd = false;
+                isSub = false;
                 console.log(`first operand value ${firstOperand}`);
               } else if (firstOperand != "") {
                 firstOperand = result;
@@ -164,7 +164,7 @@
                 firstOperand += showInput;
                 operand = operand + "*";
                 showInput = "";
-                isAdd = false;
+                isMul = false;
                 console.log(`first operand value ${firstOperand}`);
               } else if (firstOperand != "") {
                 firstOperand = result;
@@ -186,7 +186,7 @@
                 firstOperand += showInput;
                 operand = operand + "/";
                 showInput = "";
-                isAdd = false;
+                isDiv = false;
                 console.log(`first operand value ${firstOperand}`);
               } else if (firstOperand != "") {
                 firstOperand = result;
