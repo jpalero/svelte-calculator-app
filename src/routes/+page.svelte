@@ -1,7 +1,6 @@
 <script>
   let disabled = true; // this prevent the input type on clicking.
-  let defaultValue = 0; // if nothing inputed the default of 0 value will show on the input type.
-  let input = ""; // this will store input and show all the value in input type.
+  let showInput = ""; // this will store input and show all the value in input type.
   let firstOperand = ""; // this will store the first input.
   let operand = ""; // this will store the operator value when clicking the operator button add-sub-mul-div
   let secondOperand = ""; // this variable will store the second input that add-sub-mul-div to first input
@@ -13,7 +12,7 @@
 
   // This function is use to POST a request to SSR / server.ts
   async function calculate() {
-    secondOperand += input; // It will concat the second value to the input. So you will see your second operand.
+    secondOperand += showInput; // It will concat the second value to the input. So you will see your second operand.
     console.log(`operand: ${operand}`);
     console.log(`second operand value ${secondOperand}`);
 
@@ -27,11 +26,8 @@
     });
 
     result = await response.json(); // This will get return result from server.ts in a json format.
-    input = ""; // after click reset the value to default 0.
-    input += result; // Now it will concat the result to show it in input type.
-    firstOperand = ""; // After you click equal it will reset the first value for you to do another calculation.
-    operand = ""; // After you click equal it will reset the oprand value so you can use other math operator like add, sub, mul & div.
-    secondOperand = ""; // After you click equal it will reset the second value for you to do another calculation.
+    showInput = ""; // after click reset the value to default 0.
+    showInput += result; // Now it will concat the result to show it in input type.
     console.log(`result: ${result}`);
   }
 </script>
@@ -44,7 +40,7 @@
           class="output-value"
           type="text"
           id="input"
-          value={!input ? defaultValue : input}
+          value={!showInput ? firstOperand : showInput}
           {disabled}
         />
       </div>
@@ -54,61 +50,61 @@
         <button
           class="btn1"
           on:click={() => {
-            input = input + "1";
+            showInput = showInput + "1";
           }}>1</button
         >
         <button
           class="btn2"
           on:click={() => {
-            input = input + "2";
+            showInput = showInput + "2";
           }}>2</button
         >
         <button
           class="btn3"
           on:click={() => {
-            input = input + "3";
+            showInput = showInput + "3";
           }}>3</button
         >
         <button
           class="btn4"
           on:click={() => {
-            input = input + "4";
+            showInput = showInput + "4";
           }}>4</button
         >
         <button
           class="btn5"
           on:click={() => {
-            input = input + "5";
+            showInput = showInput + "5";
           }}>5</button
         >
         <button
           class="btn6"
           on:click={() => {
-            input = input + "6";
+            showInput = showInput + "6";
           }}>6</button
         >
         <button
           class="btn7"
           on:click={() => {
-            input = input + "7";
+            showInput = showInput + "7";
           }}>7</button
         >
         <button
           class="btn8"
           on:click={() => {
-            input = input + "8";
+            showInput = showInput + "8";
           }}>8</button
         >
         <button
           class="btn9"
           on:click={() => {
-            input = input + "9";
+            showInput = showInput + "9";
           }}>9</button
         >
         <button
           class="btn0"
           on:click={() => {
-            input = input + "0";
+            showInput = showInput + "0";
           }}>0</button
         >
         <button class="eqlbtn" on:click={calculate}>=</button>
@@ -124,10 +120,17 @@
           class="addbtn"
           on:click={() => {
             if (isAdd) {
-              firstOperand += input;
+              firstOperand += showInput;
               operand = operand + "+";
-              input = "";
+              showInput = "";
+              isAdd = false;
               console.log(`first operand value ${firstOperand}`);
+            } else {
+              firstOperand = result;
+              operand = "";
+              operand = operand + "+";
+              showInput = "";
+              secondOperand = "";
             }
           }}>+</button
         >
@@ -135,10 +138,21 @@
           class="minbtn"
           on:click={() => {
             if (isSub) {
-              firstOperand += input;
-              operand = operand + "-";
-              input = "";
-              console.log(`first operand value ${firstOperand}`);
+              if (firstOperand == "") {
+                firstOperand += showInput;
+                operand = operand + "-";
+                showInput = "";
+                isAdd = false;
+                console.log(`first operand value ${firstOperand}`);
+              } else if (firstOperand != "") {
+                firstOperand = result;
+                operand = "";
+                operand = operand + "-";
+                showInput = "";
+                secondOperand = "";
+              } else {
+                console.log("Invalid inputs!");
+              }
             }
           }}>-</button
         >
@@ -146,10 +160,21 @@
           class="mulbtn"
           on:click={() => {
             if (isMul) {
-              firstOperand += input;
-              operand = operand + "*";
-              input = "";
-              console.log(`first operand value ${firstOperand}`);
+              if (firstOperand == "") {
+                firstOperand += showInput;
+                operand = operand + "*";
+                showInput = "";
+                isAdd = false;
+                console.log(`first operand value ${firstOperand}`);
+              } else if (firstOperand != "") {
+                firstOperand = result;
+                operand = "";
+                operand = operand + "*";
+                showInput = "";
+                secondOperand = "";
+              } else {
+                console.log("Invalid inputs!");
+              }
             }
           }}>x</button
         >
@@ -157,15 +182,34 @@
           class="divbtn"
           on:click={() => {
             if (isDiv) {
-              firstOperand += input;
-              operand = operand + "/";
-              input = "";
-              console.log(`first operand value ${firstOperand}`);
+              if (firstOperand == "") {
+                firstOperand += showInput;
+                operand = operand + "/";
+                showInput = "";
+                isAdd = false;
+                console.log(`first operand value ${firstOperand}`);
+              } else if (firstOperand != "") {
+                firstOperand = result;
+                operand = "";
+                operand = operand + "/";
+                showInput = "";
+                secondOperand = "";
+              } else {
+                console.log("Invalid inputs!");
+              }
             }
           }}>/</button
         >
       </div>
     </div>
+  </div>
+  <div class="result-container">
+    <p>First Operand: {firstOperand}</p>
+    <p>Operand: {operand}</p>
+    <p>Second Operand: {secondOperand}</p>
+    {#if result}
+      <p>Result from the server: {JSON.stringify(result)}</p>
+    {/if}
   </div>
 </section>
 
@@ -173,9 +217,9 @@
   .main-section {
     height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
   }
 
   .calculator-container {
@@ -316,5 +360,14 @@
     background-color: #fe9c9c;
     border-bottom: none;
     box-shadow: 0px 9px 0px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  .result-container {
+    height: 150px;
+    width: 200px;
+    padding: 2rem 2rem;
+    background-color: antiquewhite;
+    border: 1px solid lightgray;
+    box-shadow: 5px 10px 0px 0px rgba(0, 0, 0, 0.75);
   }
 </style>
